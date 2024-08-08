@@ -30,10 +30,22 @@ public class RestaurantListController extends HttpServlet{
 			
 			conn = (Connection)sc.getAttribute("conn");
 			
+			String areaNoParam = req.getParameter("areaNo");
+			int areaNo = 1;
+
+			if (areaNoParam != null && !areaNoParam.isEmpty()) {
+				try {
+					areaNo = Integer.parseInt(areaNoParam);
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+					areaNo = 1;
+				}
+			}
+			
 			RestaurantDao restaurantDao = new RestaurantDao();
 			restaurantDao.setConnection(conn);
 			
-			ArrayList<RestaurantDto> restaurantList = (ArrayList<RestaurantDto>) restaurantDao.selectList();
+			ArrayList<RestaurantDto> restaurantList = (ArrayList<RestaurantDto>) restaurantDao.selectList(areaNo);
 			req.setAttribute("restaurantList", restaurantList);
 			
 			res.setContentType("text/html");

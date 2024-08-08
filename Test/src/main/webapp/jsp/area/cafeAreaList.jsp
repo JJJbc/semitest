@@ -8,7 +8,7 @@
 <title>cafeAreaList</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css">
-<link rel="stylesheet" href="../css/common/area.css" type="text/css" />
+<link rel="stylesheet" href="../css/common/common.css" type="text/css" />
 <link rel="stylesheet" href="../css/common/areaAndPlace.css" type="text/css" />
 <script defer src="../js/movePage.js"></script>
 <style type="text/css">
@@ -25,10 +25,13 @@
 		<div class="main-container__content">
 			<ul>
 				<c:forEach var="areaDto" items="${areaList}">
-					<li>						
-						<button onclick="moveCafeListfnc()" class="areaBtn">${areaDto.areaName}</button>							
-					</li>
-				</c:forEach>
+                    <li>
+                        <form action="/Test/place/cafeList" method="get">
+                            <input type="hidden" name="areaNo" value="${areaDto.areaNo}" />
+                            <button type="submit" class="areaBtn">${areaDto.areaName}</button>
+                        </form>
+                    </li>
+                </c:forEach>
 			</ul>
 		</div>
 	</div>

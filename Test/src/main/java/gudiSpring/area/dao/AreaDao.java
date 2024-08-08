@@ -31,7 +31,7 @@ public class AreaDao {
 			
 			rs = pstmt.executeQuery();
 			
-			int areaNo = 0;
+			int areaNo = 1;
 			String areaName = "";
 			
 			ArrayList<AreaDto> areaList = new ArrayList<AreaDto>();

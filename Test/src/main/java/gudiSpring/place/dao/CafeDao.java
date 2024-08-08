@@ -17,7 +17,7 @@ public class CafeDao {
 		this.connection = conn;
 	}
 
-	public List<CafeDto> selectList() throws Exception {
+	public List<CafeDto> selectList(int areaNo) throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -30,20 +30,21 @@ public class CafeDao {
 				+  " AND A.AREA_NO = ?";
 
 			pstmt = connection.prepareStatement(sql);
+			
+			pstmt.setInt(1, areaNo);		
 
 			rs = pstmt.executeQuery();
 
-			String placeName = "";
+//			String placeName = "";
 
-			ArrayList<CafeDto> cafeList = new ArrayList<CafeDto>();
-
-			CafeDto CafeDto = null;
+			ArrayList<CafeDto> cafeList = new ArrayList<>();
+			
 			while (rs.next()) {
-				placeName = rs.getString("PLACE_NAME");
+				String placeName = rs.getString("PLACE_NAME");
 
-				CafeDto = new CafeDto(placeName);
+				CafeDto cafeDto = new CafeDto(placeName);
 
-				cafeList.add(CafeDto);
+				cafeList.add(cafeDto);
 			}
 			return cafeList;
 		} catch (Exception e) {

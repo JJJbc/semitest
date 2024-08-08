@@ -17,7 +17,7 @@ public class PensionDao {
 		this.connection = conn;
 	}
 
-	public List<PensionDto> selectList() throws Exception {
+	public List<PensionDto> selectList(int areaNo) throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -25,19 +25,22 @@ public class PensionDao {
 
 			sql += "SELECT PLACE_NAME";
 			sql += " FROM AREA A, PLACE P";
-			sql += " WHERE A.AREA_NO = P.AREA_NO" + " AND P.CATEGORY = '펜션'" + " AND A.AREA_NO = 1";
+			sql += " WHERE A.AREA_NO = P.AREA_NO"
+				+  " AND P.CATEGORY = '펜션'"
+				+  " AND A.AREA_NO = ?";
 
 			pstmt = connection.prepareStatement(sql);
+			
+			pstmt.setInt(1, areaNo);
 
 			rs = pstmt.executeQuery();
-
-			String placeName = "";
+			
 
 			ArrayList<PensionDto> pensionList = new ArrayList<PensionDto>();
 
 			PensionDto PensionDto = null;
 			while (rs.next()) {
-				placeName = rs.getString("PLACE_NAME");
+				String placeName = rs.getString("PLACE_NAME");
 
 				PensionDto = new PensionDto(placeName);
 
