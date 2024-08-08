@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+ul, li {
+	list-style: none;
+}
+
+/* .main-container__content {
+	border: 1px solid;
+} */
+
+.main-container__content {
+	margin-top: 80px;
+}
+
+.main-container__content ul li {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px auto;
+/* 	border: 1px solid; */
+	font-size: 20px;
+}
+
+.main-container__content ul li div {
+	margin: 10px;
+}
+
+.areaBtn {
+	display: flex;
+	margin: 20px auto;
+	width: 300px;
+	height: 220px;
+	justify-content: center;
+	align-items: center;
+	
+}
