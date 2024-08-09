@@ -1,11 +1,11 @@
-package gudiSpring.place.controller;
+package gudiSpring.place.controller.restaurant;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import gudiSpring.place.dao.RestaurantDao;
-import gudiSpring.place.dto.RestaurantDto;
+import gudiSpring.place.dao.restaurant.RestaurantDao;
+import gudiSpring.place.dto.restaurant.RestaurantDto;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -14,12 +14,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(value = "/place/restaurantList")
+@WebServlet(value = "/place/restaurant")
 public class RestaurantListController extends HttpServlet{
 		
 	private static final long serialVersionUID = 1L;
 	
-	// 식당 리스트 받아와서 jsp에게 출력하라고 넘김
+	// 식당 리스트 출력
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -37,21 +37,19 @@ public class RestaurantListController extends HttpServlet{
 				try {
 					areaNo = Integer.parseInt(areaNoParam);
 				} catch (NumberFormatException e) {
-					e.printStackTrace();
-					areaNo = 1;
+					e.printStackTrace();					
 				}
 			}
 			
 			RestaurantDao restaurantDao = new RestaurantDao();
 			restaurantDao.setConnection(conn);
 			
-			ArrayList<RestaurantDto> restaurantList = (ArrayList<RestaurantDto>) restaurantDao.selectList(areaNo);
+			ArrayList<RestaurantDto> restaurantList = (ArrayList<RestaurantDto>) restaurantDao.selectRestaurantList(areaNo);
 			req.setAttribute("restaurantList", restaurantList);
 			
-			res.setContentType("text/html");
-			res.setCharacterEncoding("UTF-8");
+
 			
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/restaurantList.jsp");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/restaurant/restaurantList.jsp");
 			dispatcher.forward(req, res);			
 		} catch (Exception e) {
 			e.printStackTrace();

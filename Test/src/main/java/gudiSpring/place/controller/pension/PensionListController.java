@@ -1,11 +1,11 @@
-package gudiSpring.place.controller;
+package gudiSpring.place.controller.pension;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import gudiSpring.place.dao.PensionDao;
-import gudiSpring.place.dto.PensionDto;
+import gudiSpring.place.dao.pension.PensionDao;
+import gudiSpring.place.dto.pension.PensionDto;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -14,12 +14,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(value = "/place/pensionList")
+@WebServlet(value = "/place/pension")
 public class PensionListController extends HttpServlet{
 		
 	private static final long serialVersionUID = 1L;
 	
-	// 펜션 리스트 받아와서 jsp에게 출력하라고 넘김
+	// 펜션 리스트 출력
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -38,20 +38,18 @@ public class PensionListController extends HttpServlet{
 					areaNo = Integer.parseInt(areaNoParam);
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
-					areaNo = 1;
 				}
 			}
 			
 			PensionDao pensionDao = new PensionDao();
 			pensionDao.setConnection(conn);
 			
-			ArrayList<PensionDto> pensionList = (ArrayList<PensionDto>) pensionDao.selectList(areaNo);
+			ArrayList<PensionDto> pensionList = (ArrayList<PensionDto>) pensionDao.selectPensionList(areaNo);
 			req.setAttribute("pensionList", pensionList);
 			
-			res.setContentType("text/html");
-			res.setCharacterEncoding("UTF-8");
+
 			
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/pensionList.jsp");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/pension/pensionList.jsp");
 			dispatcher.forward(req, res);			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,11 +1,11 @@
-package gudiSpring.place.controller;
+package gudiSpring.place.controller.cafe;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import gudiSpring.place.dao.CafeDao;
-import gudiSpring.place.dto.CafeDto;
+import gudiSpring.place.dao.cafe.CafeDao;
+import gudiSpring.place.dto.cafe.CafeDto;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -14,12 +14,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(value = "/place/cafeList")
+@WebServlet(value = "/place/cafe")
 public class CafeListController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	// 카페 리스트 받아와서 jsp에게 출력하라고 넘김
+	// 카페 리스트 출력
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -37,32 +37,25 @@ public class CafeListController extends HttpServlet {
 				try {
 					areaNo = Integer.parseInt(areaNoParam);
 				} catch (NumberFormatException e) {
-					e.printStackTrace();
-					areaNo = 1;
+					e.printStackTrace();					
 				}
 			}
 			CafeDao cafeDao = new CafeDao();
 			cafeDao.setConnection(conn);
 
-			ArrayList<CafeDto> cafeList = (ArrayList<CafeDto>) cafeDao.selectList(areaNo);			
+			ArrayList<CafeDto> cafeList = (ArrayList<CafeDto>) cafeDao.selectCafeList(areaNo);			
 		
 			
 			req.setAttribute("cafeList", cafeList);
-//			System.out.println("areaNo: " + areaNo);
-			res.setContentType("text/html");
-			res.setCharacterEncoding("UTF-8");
 
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/cafeList.jsp");
+
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/cafe/cafeList.jsp");
 			dispatcher.forward(req, res);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, res);
-	}
+
 
 }

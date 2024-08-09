@@ -10,7 +10,8 @@
 	href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css">
 <link rel="stylesheet" href="../css/common/common.css" type="text/css" />
 <link rel="stylesheet" href="../css/common/areaAndPlace.css" type="text/css" />
-<script defer src="../js/movePage.js"></script>
+<script defer src="${pageContext.request.contextPath}/js/movePage.js"></script>
+
 <style type="text/css">
 
 </style>
@@ -19,21 +20,24 @@
 </script>
 </head>
 <body>
-	<jsp:include page="../common/header.jsp" />
+	<jsp:include page="/jsp/common/header.jsp" />
 
-	<!-- 펜션 리스트 배열로 호출 후 출력  -->
+	<!-- restaurant List  -->
 	<div class="main-container">
 		<div class="main-container__content">
 			<ul>
-				<c:forEach var="pensionDto" items="${pensionList}">
+				<c:forEach var="restaurantDto" items="${restaurantList}">
 					<li>
-						<div>${pensionDto.placeName}</div>
+						<form action="${pageContext.request.contextPath}/place/restaurant/infomation" method="get">
+						<input type="hidden" name="placeNo" value="${restaurantDto.placeNo}" />
+						<button type="submit" class="areaBtn">${restaurantDto.placeName}</button>			
+						</form>
 					</li>
 				</c:forEach>
 			</ul>
 		</div>
 	</div>
 
-	<jsp:include page="../common/footer.jsp" />
+	<jsp:include page="/jsp/common/footer.jsp" />
 </body>
 </html>

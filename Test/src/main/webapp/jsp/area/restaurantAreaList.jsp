@@ -8,24 +8,24 @@
 <title>restaurantAreaList</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css">
-<link rel="stylesheet" href="../css/common/common.css" type="text/css" />
-<link rel="stylesheet" href="../css/common/areaAndPlace.css" type="text/css" />
-<script defer src="../js/movePage.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common/common.css" type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common/areaAndPlace.css" type="text/css" />
+<script defer src="${pageContext.request.contextPath}/js/movePage.js"></script>
 <style type="text/css">
 
 
 </style>
 </head>
 <body>
-	<jsp:include page="../common/header.jsp" />
+	<jsp:include page="/jsp/common/header.jsp" />
 
-	<!-- 카페 리스트 배열로 호출 후 출력  -->
+	<!-- 식당 지역  -->
 	<div class="main-container">
 		<div class="main-container__content">
 			<ul>
 				<c:forEach var="areaDto" items="${areaList}">
                     <li>
-                        <form action="/Test/place/restaurantList" method="get">
+                        <form action="/Test/place/restaurant" method="get">
                             <input type="hidden" name="areaNo" value="${areaDto.areaNo}" />
                             <button type="submit" class="areaBtn">${areaDto.areaName}</button>
                         </form>

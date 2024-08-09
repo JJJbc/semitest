@@ -1,4 +1,4 @@
-package gudiSpring.area.controller;
+package gudiSpring.area.controller.pension;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(value = "/area/pensionAreaList")
+@WebServlet(value = "/area/pension")
 public class PensionAreaListController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
@@ -36,9 +36,7 @@ public class PensionAreaListController extends HttpServlet{
 
 			ArrayList<AreaDto> areaList = (ArrayList<AreaDto>) areaDao.selectList();
 			req.setAttribute("areaList", areaList);
-			/* System.out.println(areaList); */
-			res.setContentType("text/html");
-			res.setCharacterEncoding("UTF-8");
+
 			
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/area/pensionAreaList.jsp");
 			dispatcher.forward(req, res);			

@@ -1,4 +1,4 @@
-package gudiSpring.area.controller;
+package gudiSpring.area.controller.cafe;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(value = "/area/cafeAreaList")
+@WebServlet(value = "/area/cafe")
 public class CafeAreaListController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
@@ -35,9 +35,7 @@ public class CafeAreaListController extends HttpServlet{
 
 			ArrayList<AreaDto> areaList = (ArrayList<AreaDto>) areaDao.selectList();
 			req.setAttribute("areaList", areaList);
-			/* System.out.println(areaList); */
-			res.setContentType("text/html");
-			res.setCharacterEncoding("UTF-8");
+		
 			
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/area/cafeAreaList.jsp");
 			dispatcher.forward(req, res);			
