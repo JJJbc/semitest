@@ -17,7 +17,7 @@ public class PensionDao {
 	public void setConnection(Connection conn) {
 		this.connection = conn;
 	}
-	
+
 	// 펜션 리스트
 	public List<PensionDto> selectPensionList(int areaNo) throws Exception {
 		PreparedStatement pstmt = null;
@@ -41,7 +41,6 @@ public class PensionDao {
 
 			rs = pstmt.executeQuery();
 
-			
 			while (rs.next()) {
 				String placeName = rs.getString("PLACE_NAME");
 				int placeNo = rs.getInt("PLACE_NO");
@@ -69,7 +68,7 @@ public class PensionDao {
 		}
 		return pensionList;
 	}
-	
+
 	// 펜션 정보
 	public PensionDto selectPensionInfomation(int placeNo) throws Exception {
 		PreparedStatement pstmt = null;

@@ -15,24 +15,24 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(value = "/place/pension/infomation")
-public class PensionInfomationController extends HttpServlet{
-		
+public class PensionInfomationController extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	// 펜션 정보 출력
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Connection conn = null;
-		
+
 		try {
 			ServletContext sc = this.getServletContext();
-			
-			conn = (Connection)sc.getAttribute("conn");
-			
+
+			conn = (Connection) sc.getAttribute("conn");
+
 			String placeNoParam = req.getParameter("placeNo");
 			int placeNo = -1;
-			
+
 			if (placeNoParam != null && !placeNoParam.isEmpty()) {
 				try {
 					placeNo = Integer.parseInt(placeNoParam);
@@ -40,24 +40,19 @@ public class PensionInfomationController extends HttpServlet{
 					e.printStackTrace();
 				}
 			}
-			
+
 			PensionDao pensionDao = new PensionDao();
 			pensionDao.setConnection(conn);
-			
-			
-			PensionDto pension = pensionDao.selectPensionInfomation(placeNo);
-			
-			req.setAttribute("pension", pension);
-			
 
-			
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/pension/pensionInfomation.jsp");
-			dispatcher.forward(req, res);			
+			PensionDto pension = pensionDao.selectPensionInfomation(placeNo);
+
+			req.setAttribute("pension", pension);
+
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/pension/pensionInfomationView.jsp");
+			dispatcher.forward(req, res);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 }

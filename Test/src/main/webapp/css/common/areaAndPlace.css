@@ -8,38 +8,61 @@ ul, li {
 	border: 1px solid;
 } */
 
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
 .main-container_content {
-	margin-top: 80px;
-	border: 1px solid;
-}
-
-.main-container_content ul a{
+	margin-top:80px;
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 10px auto;
- 	border: 1px solid black; 
-	font-size: 20px;
-	height: 200px;
-	width: 240px;
-	margin-right: auto;
-		
+    width: 100%;
+    max-width: 1200px;
 }
 
-.main-container_content ul li {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 10px auto;
- 	border: 1px solid black; 
-	font-size: 20px;
-	height: 40px;
-	width: 700px;
-	
+.main-container_content .image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
 }
 
-.main-container_content ul li div {
-	margin: 10px;
+.main-container_content .image-container img {
+    width: 100%;
+    height: auto;
+    max-width: 300px; 
+}
+
+.main-container_content .info-container {
+    flex: 2;
+}
+
+.main-container_content .info-container ul {
+    margin: 0;
+    padding: 0;
+}
+
+.main-container_content .info-container ul li {    
+    font-size: 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.main-container_content .info-container .placeName {    
+    font-size: 30px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.main-container_content .info-container .place--webSite span:hover {
+	text-decoration: underline;
 }
 
 .areaBtn {
@@ -51,7 +74,7 @@ ul, li {
 	align-items: center;	
 }
 
-.swiper {
-  width: 600px;
-  height: 400px;
+.swiper{
+	width: 700px;
+	height: 600px;	
 }

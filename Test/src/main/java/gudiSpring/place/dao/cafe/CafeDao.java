@@ -16,31 +16,30 @@ public class CafeDao {
 	public void setConnection(Connection conn) {
 		this.connection = conn;
 	}
-	
-	
-	// cafe list 
+
+	// cafe list
 	public List<CafeDto> selectCafeList(int areaNo) throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		String sql = "";
 
 		sql += "SELECT PLACE_NAME, PLACE_NO";
 		sql += " FROM PLACE P, AREA A";
 		sql += " WHERE P.AREA_NO = A.AREA_NO";
-		sql	+= " AND P.CATEGORY = '카페'";
-		sql	+= " AND A.AREA_NO = ?";
-		
+		sql += " AND P.CATEGORY = '카페'";
+		sql += " AND A.AREA_NO = ?";
+
 		ArrayList<CafeDto> cafeList = new ArrayList<>();
-		
-		try {			
+
+		try {
 
 			pstmt = connection.prepareStatement(sql);
-			
-			pstmt.setInt(1, areaNo);		
 
-			rs = pstmt.executeQuery();			
-			
+			pstmt.setInt(1, areaNo);
+
+			rs = pstmt.executeQuery();
+
 			while (rs.next()) {
 				String placeName = rs.getString("PLACE_NAME");
 				int placeNo = rs.getInt("PLACE_NO");
@@ -51,16 +50,16 @@ public class CafeDao {
 			return cafeList;
 		} catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();		
+			e.printStackTrace();
 		} finally {
 			try {
 				if (rs != null) {
-					rs.close();	
-				}	
+					rs.close();
+				}
 				if (pstmt != null) {
 					pstmt.close();
-				}				
-			}catch (SQLException e) {
+				}
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -68,49 +67,49 @@ public class CafeDao {
 		}
 		return cafeList;
 	}
-	
-	//카페 정보
+
+	// 카페 정보
 	public CafeDto selectCafeInfomation(int placeNo) throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		String sql = "";
 
 		sql += "SELECT PLACE_NO, PLACE_NAME, PL_ADDRESS, PL_PHONE, PL_WEBSITE";
 		sql += " FROM PLACE";
 		sql += " WHERE CATEGORY = '카페'";
-		sql	+= " AND PLACE_NO = ?";
-			
+		sql += " AND PLACE_NO = ?";
+
 		CafeDto cafeDto = null;
-		try {			
+		try {
 
 			pstmt = connection.prepareStatement(sql);
-			
-			pstmt.setInt(1, placeNo);		
 
-			rs = pstmt.executeQuery();			
-			
-			if (rs.next()) {				
+			pstmt.setInt(1, placeNo);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
 				String placeName = rs.getString("PLACE_NAME");
 				String plAddress = rs.getString("PL_ADDRESS");
 				String plPhone = rs.getString("PL_PHONE");
 				String plWebsite = rs.getString("PL_WEBSITE");
 
-				cafeDto = new CafeDto(placeName, plAddress, plPhone, plWebsite);				
+				cafeDto = new CafeDto(placeName, plAddress, plPhone, plWebsite);
 			}
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();		
+			e.printStackTrace();
 		} finally {
 			try {
 				if (rs != null) {
-					rs.close();	
-				}	
+					rs.close();
+				}
 				if (pstmt != null) {
 					pstmt.close();
-				}				
-			}catch (SQLException e) {
+				}
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

@@ -31,35 +31,28 @@ public class CafeInfomationController extends HttpServlet {
 			conn = (Connection) sc.getAttribute("conn");
 
 			String placeNoParam = req.getParameter("placeNo");
-			
+
 			int placeNo = -1;
-			
-			
-			
+
 			if (placeNoParam != null && !placeNoParam.isEmpty()) {
 				try {
 					placeNo = Integer.parseInt(placeNoParam);
 				} catch (NumberFormatException e) {
-					e.printStackTrace();					
+					e.printStackTrace();
 				}
 			}
 			CafeDao cafeDao = new CafeDao();
 			cafeDao.setConnection(conn);
 
-			CafeDto cafe = cafeDao.selectCafeInfomation(placeNo);	
-			
-					
-			
+			CafeDto cafe = cafeDao.selectCafeInfomation(placeNo);
+
 			req.setAttribute("cafe", cafe);
 
-
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/cafe/cafeInfomation.jsp");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/cafe/cafeInfomationView.jsp");
 			dispatcher.forward(req, res);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
-
 
 }

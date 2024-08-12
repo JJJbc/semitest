@@ -15,21 +15,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(value = "/place/restaurant")
-public class RestaurantListController extends HttpServlet{
-		
+public class RestaurantListController extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	// 식당 리스트 출력
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Connection conn = null;
-		
+
 		try {
 			ServletContext sc = this.getServletContext();
-			
-			conn = (Connection)sc.getAttribute("conn");
-			
+
+			conn = (Connection) sc.getAttribute("conn");
+
 			String areaNoParam = req.getParameter("areaNo");
 			int areaNo = 1;
 
@@ -37,31 +37,28 @@ public class RestaurantListController extends HttpServlet{
 				try {
 					areaNo = Integer.parseInt(areaNoParam);
 				} catch (NumberFormatException e) {
-					e.printStackTrace();					
+					e.printStackTrace();
 				}
 			}
-			
+
 			RestaurantDao restaurantDao = new RestaurantDao();
 			restaurantDao.setConnection(conn);
-			
-			ArrayList<RestaurantDto> restaurantList = (ArrayList<RestaurantDto>) restaurantDao.selectRestaurantList(areaNo);
-			req.setAttribute("restaurantList", restaurantList);
-			
 
-			
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/restaurant/restaurantList.jsp");
-			dispatcher.forward(req, res);			
+			ArrayList<RestaurantDto> restaurantList = (ArrayList<RestaurantDto>) restaurantDao
+					.selectRestaurantList(areaNo);
+			req.setAttribute("restaurantList", restaurantList);
+
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/restaurant/restaurantListView.jsp");
+			dispatcher.forward(req, res);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		super.doPost(req, res);
 	}
-	
-	
 
 }

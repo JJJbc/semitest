@@ -16,7 +16,7 @@ public class RestaurantDao {
 	public void setConnection(Connection conn) {
 		this.connection = conn;
 	}
-	
+
 	// 식당 리스트
 	public List<RestaurantDto> selectRestaurantList(int areaNo) throws Exception {
 		PreparedStatement pstmt = null;
@@ -40,7 +40,6 @@ public class RestaurantDao {
 
 			rs = pstmt.executeQuery();
 
-			
 			while (rs.next()) {
 				String placeName = rs.getString("PLACE_NAME");
 				int placeNo = rs.getInt("PLACE_NO");
@@ -68,8 +67,8 @@ public class RestaurantDao {
 		}
 		return restaurantList;
 	}
-	
-	//식당 정보
+
+	// 식당 정보
 	public RestaurantDto selectRestaurantInfomation(int placeNo) throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

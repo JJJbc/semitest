@@ -37,25 +37,21 @@ public class CafeListController extends HttpServlet {
 				try {
 					areaNo = Integer.parseInt(areaNoParam);
 				} catch (NumberFormatException e) {
-					e.printStackTrace();					
+					e.printStackTrace();
 				}
 			}
 			CafeDao cafeDao = new CafeDao();
 			cafeDao.setConnection(conn);
 
-			ArrayList<CafeDto> cafeList = (ArrayList<CafeDto>) cafeDao.selectCafeList(areaNo);			
-		
-			
+			ArrayList<CafeDto> cafeList = (ArrayList<CafeDto>) cafeDao.selectCafeList(areaNo);
+
 			req.setAttribute("cafeList", cafeList);
 
-
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/cafe/cafeList.jsp");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/cafe/cafeListView.jsp");
 			dispatcher.forward(req, res);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
-
 
 }
