@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+ul, li {
+	list-style: none;
+}
+
+/* .main-container__content {
+	border: 1px solid;
+} */
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.main-container_content {
+	display: flex;    
+    max-width: 3000px;
+}
+
+/*  place/infomation css */
+/*  image */
+.main-container_content .place__info {    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+}
+
+.main-container_content .place__info .place__info--img img {    
+    height: 500px;
+    width: 800px; 
+}
+
+/*  text */
+.main-container_content .place__info .place__info--text .place__info--text--box {
+    margin: 5px;
+    padding: 0;
+}
+
+.main-container_content .place__info .place__info--text .place__info--text--box .info {    
+    font-size: 30px;
+    height: 60px;
+    display: flex;
+    align-items: center;    
+    flex-direction: column;
+}
+
+.main-container_content .place__info .place__info--text .place__info--text--box .placeName {    
+    font-size: 50px;
+    height: 70px;
+    display: flex;
+    align-items: center;    
+    flex-direction: column;
+}
+
+.main-container_content .place__info .place__info--text .place__info--text--box .place--webSite{
+	font-size: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;    
+    flex-direction: column;
+}
+
+.main-container_content .place__info .place__info--text .place__info--text--box .place--webSite:hover {
+		text-decoration: underline;
+}
+
+
+/* area/place/list css */
+
+.list-box {
+    width: 1500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* 칸 가격 조정 */
+}
+
+.list-box .list-box__li .place--list .area--img {
+	width: 100%;
+	height: 260px;
+}
+
+.area-list-box .area-list-box__li .area--title {
+	height: 40px;
+	line-height: 40px;
+	font-size: 20px;
+	text-align: center;
+}
+
+.list-box .list-box__li .place--list {
+	width: 400px;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black;
+}
+
+.list-box .list-box__li .place--list .place--img {
+	width: 100%;
+	height: 260px;
+}
+
+.list-box .list-box__li .place--list .place--title {
+	height: 40px;
+	line-height: 40px;
+	font-size: 20px;
+	text-align: center;
+}
+
+
+
+
+

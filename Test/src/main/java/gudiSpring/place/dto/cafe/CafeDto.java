@@ -7,21 +7,24 @@ public class CafeDto {
 	private String plAddress;
 	private String plPhone;
 	private String plWebsite;
-
+	private String plImgPath;
+	
 	public CafeDto() {
 	}
 
-	public CafeDto(String placeName, int placeNo) {
+	public CafeDto(String placeName, int placeNo, String plImgPath) {
 		this.placeName = placeName;
 		this.placeNo = placeNo;
+		this.plImgPath = plImgPath;
 	}
 
-	public CafeDto(String placeName, String plAddress, String plPhone, String plWebsite) {
+	public CafeDto(String placeName, String plAddress, String plPhone, String plWebsite, String plImgPath) {
 		super();
 		this.placeName = placeName;
 		this.plAddress = plAddress;
 		this.plPhone = plPhone;
 		this.plWebsite = plWebsite;
+		this.plImgPath = plImgPath;
 
 	}
 
@@ -65,10 +68,18 @@ public class CafeDto {
 		this.plWebsite = plWebsite;
 	}
 
+	public String getPlImgPath() {
+		return plImgPath;
+	}
+
+	public void setPlImgPath(String plImgPath) {
+		this.plImgPath = plImgPath;
+	}
+
 	@Override
 	public String toString() {
-		return "CafeDto [placeName=" + placeName + ", plAddress=" + plAddress + ", plPhone=" + plPhone + ", plWebsite="
-				+ plWebsite + ", placeNo=" + placeNo + "]";
+		return "CafeDto [placeNo=" + placeNo + ", placeName=" + placeName + ", plAddress=" + plAddress + ", plPhone="
+				+ plPhone + ", plWebsite=" + plWebsite + ", plImgPath=" + plImgPath + "]";
 	}
 
 }

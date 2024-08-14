@@ -15,12 +15,11 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/common/common.css"
 	type="text/css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/common/areaAndPlace.css"
-	type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main/main.css" type="text/css" />
 <script defer src="${pageContext.request.contextPath}/js/swipe.js"></script>
 <script defer src="${pageContext.request.contextPath}/js/movePage.js"></script>
 <style type="text/css">
+
 </style>
 <script type="text/javascript">
 	

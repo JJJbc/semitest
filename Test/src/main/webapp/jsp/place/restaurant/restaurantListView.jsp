@@ -8,8 +8,8 @@
 <title>Place List</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css">
-<link rel="stylesheet" href="../css/common/common.css" type="text/css" />
-<link rel="stylesheet" href="../css/common/areaAndPlace.css" type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common/common.css" type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/place/Place.css" type="text/css" />
 <script defer src="${pageContext.request.contextPath}/js/movePage.js"></script>
 
 <style type="text/css">

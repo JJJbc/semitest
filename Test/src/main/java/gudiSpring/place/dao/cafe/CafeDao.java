@@ -24,7 +24,7 @@ public class CafeDao {
 
 		String sql = "";
 
-		sql += "SELECT PLACE_NAME, PLACE_NO";
+		sql += "SELECT PLACE_NAME, PLACE_NO, PLACE_IMG_PATH";
 		sql += " FROM PLACE P, AREA A";
 		sql += " WHERE P.AREA_NO = A.AREA_NO";
 		sql += " AND P.CATEGORY = '카페'";
@@ -43,7 +43,8 @@ public class CafeDao {
 			while (rs.next()) {
 				String placeName = rs.getString("PLACE_NAME");
 				int placeNo = rs.getInt("PLACE_NO");
-				CafeDto cafeDto = new CafeDto(placeName, placeNo);
+				String plImgPath = rs.getString("PLACE_IMG_PATH");
+				CafeDto cafeDto = new CafeDto(placeName, placeNo, plImgPath);
 
 				cafeList.add(cafeDto);
 			}
@@ -75,7 +76,7 @@ public class CafeDao {
 
 		String sql = "";
 
-		sql += "SELECT PLACE_NO, PLACE_NAME, PL_ADDRESS, PL_PHONE, PL_WEBSITE";
+		sql += "SELECT PLACE_NO, PLACE_NAME, PL_ADDRESS, PL_PHONE, PL_WEBSITE, PLACE_IMG_PATH";
 		sql += " FROM PLACE";
 		sql += " WHERE CATEGORY = '카페'";
 		sql += " AND PLACE_NO = ?";
@@ -94,8 +95,9 @@ public class CafeDao {
 				String plAddress = rs.getString("PL_ADDRESS");
 				String plPhone = rs.getString("PL_PHONE");
 				String plWebsite = rs.getString("PL_WEBSITE");
+				String plImgPath = rs.getString("PLACE_IMG_PATH");
 
-				cafeDto = new CafeDto(placeName, plAddress, plPhone, plWebsite);
+				cafeDto = new CafeDto(placeName, plAddress, plPhone, plWebsite, plImgPath);
 			}
 
 		} catch (Exception e) {

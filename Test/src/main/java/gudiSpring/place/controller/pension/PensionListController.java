@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(value = "/place/pension")
+@WebServlet(value = "/area/place/pension")
 public class PensionListController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
