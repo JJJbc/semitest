@@ -18,23 +18,31 @@ public class CafeDao {
 	}
 
 	// cafe list
-	public List<CafeDto> selectCafeList(int areaNo) throws Exception {
+	public List<CafeDto> selectCafeList(int areaNo, int startRow, int endRow) throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		String sql = "";
 
-		sql += "SELECT PLACE_NAME, PLACE_NO, PLACE_IMG_PATH";
-		sql += " FROM PLACE P, AREA A";
-		sql += " WHERE P.AREA_NO = A.AREA_NO";
-		sql += " AND P.CATEGORY = '카페'";
-		sql += " AND A.AREA_NO = ?";
+		sql += "SELECT rnum, PLACE_NAME, PLACE_NO, PLACE_IMG_PATH FROM ( ";
+        sql += "   SELECT ROWNUM AS rnum, P.PLACE_NAME, P.PLACE_NO, P.PLACE_IMG_PATH ";
+        sql += "   FROM PLACE P, AREA A ";
+        sql += "   WHERE P.AREA_NO = A.AREA_NO ";
+        sql += "   AND P.CATEGORY = '카페' ";
+        sql += "   AND A.AREA_NO = ? ";
+        sql += "   ORDER BY P.PLACE_NO ";
+        sql += ") ";
+        sql += "WHERE rnum BETWEEN ? AND ?";
 
 		ArrayList<CafeDto> cafeList = new ArrayList<>();
 
 		try {
 
 			pstmt = connection.prepareStatement(sql);
+			
+			pstmt.setInt(1, areaNo);
+            pstmt.setInt(2, startRow);
+            pstmt.setInt(3, endRow);
 
 			pstmt.setInt(1, areaNo);
 
@@ -68,6 +76,25 @@ public class CafeDao {
 		}
 		return cafeList;
 	}
+	// 카페 총 개수 조회
+    public int getTotalCount(int areaNo) throws SQLException {
+    	String sql = "";
+    	
+         sql += "SELECT COUNT(PLACE_NO)"; 
+         sql += " FROM PLACE P, AREA A"; 
+         sql += " WHERE P.AREA_NO = A.AREA_NO";
+         sql += " AND P.CATEGORY = '카페' AND A.AREA_NO = ?";
+         
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, areaNo);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+                return 0;
+            }
+        }
+    }
 
 	// 카페 정보
 	public CafeDto selectCafeInfomation(int placeNo) throws Exception {
@@ -76,7 +103,7 @@ public class CafeDao {
 
 		String sql = "";
 
-		sql += "SELECT PLACE_NO, PLACE_NAME, PL_ADDRESS, PL_PHONE, PL_WEBSITE, PLACE_IMG_PATH";
+		sql += "SELECT PLACE_NO, PLACE_NAME, PL_ADDRESS, PL_PHONE, PL_WEBSITE, PLACE_IMG_PATH, GEN_RESERVATION, RECO_RESERVATION";
 		sql += " FROM PLACE";
 		sql += " WHERE CATEGORY = '카페'";
 		sql += " AND PLACE_NO = ?";
@@ -119,4 +146,19 @@ public class CafeDao {
 		}
 		return cafeDto;
 	}
+	
+		
+
+    // GEN_RESERVATION 값을 증가시키는 메서드
+    public void incrementReservation(int placeNo) throws SQLException {
+    	String sql = "";
+    	
+    	sql += "UPDATE PLACE SET GEN_RESERVATION = GEN_RESERVATION + 1 WHERE PLACE_NO = ?";
+    	
+    	try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, placeNo);
+            pstmt.executeUpdate();
+        }
+    	
+    }
 }

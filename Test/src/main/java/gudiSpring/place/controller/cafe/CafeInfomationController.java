@@ -31,27 +31,40 @@ public class CafeInfomationController extends HttpServlet {
 			conn = (Connection) sc.getAttribute("conn");
 
 			String placeNoParam = req.getParameter("placeNo");
-
+			String redirectToWebsite = req.getParameter("redirectToWebsite");
 			int placeNo = -1;
 
 			if (placeNoParam != null && !placeNoParam.isEmpty()) {
-				try {
-					placeNo = Integer.parseInt(placeNoParam);
-				} catch (NumberFormatException e) {
-					e.printStackTrace();
-				}
-			}
-			CafeDao cafeDao = new CafeDao();
-			cafeDao.setConnection(conn);
+                try {
+                    placeNo = Integer.parseInt(placeNoParam);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+            }
 
-			CafeDto cafe = cafeDao.selectCafeInfomation(placeNo);
+            CafeDao cafeDao = new CafeDao();
+            cafeDao.setConnection(conn);
 
-			req.setAttribute("cafe", cafe);
-
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/cafe/cafeInfomationView.jsp");
-			dispatcher.forward(req, res);
-		} catch (Exception e) {
-			e.printStackTrace();
+            if (redirectToWebsite != null && redirectToWebsite.equals("true")) {
+                // Increase GEN_RESERVATION
+                cafeDao.incrementReservation(placeNo);
+                
+                // Retrieve updated cafe information
+                CafeDto cafe = cafeDao.selectCafeInfomation(placeNo);
+                req.setAttribute("cafe", cafe);
+                
+                // Forward to JSP
+                RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/cafe/cafeInfomationView.jsp");
+                dispatcher.forward(req, res);
+            } else {
+                // Normal request for cafe info
+                CafeDto cafe = cafeDao.selectCafeInfomation(placeNo);
+                req.setAttribute("cafe", cafe);
+                RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/cafe/cafeInfomationView.jsp");
+                dispatcher.forward(req, res);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
 		}
 	}
 

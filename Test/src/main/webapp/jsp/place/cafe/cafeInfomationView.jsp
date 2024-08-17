@@ -29,15 +29,15 @@
 		<div class="main-container_content">
 			<div class="place__info">
 				<div class="place__info--img">
-					<img src="/img/place/${cafe.plImgPath}"
-						alt="이미지 준비중" class="place--img" />
+					<img src="/img/place/${cafe.plImgPath}" alt="이미지 준비중"
+						class="place--img" />
 				</div>
 				<div class="place__info--text">
 					<ul class="place__info--text--box">
 						<li class="placeName">${cafe.placeName}</li>
 						<li class="info">Address : ${cafe.plAddress}</li>
 						<li class="info">Phone : ${cafe.plPhone}</li>
-						<li class="info"><a href="${cafe.plWebsite}" target="_blank"
+						<li class="info"><a href="${cafe.plWebsite}?redirectToWebsite=true" target="_blank"
 							class="place--webSite">Web : ${cafe.plWebsite}</a></li>
 					</ul>
 				</div>
@@ -45,6 +45,33 @@
 		</div>
 	</div>
 
+	<!-- 댓글 섹션 -->
+	<div class="comment-section">
+		<h2>댓글</h2>
+
+		<!-- 댓글 입력 폼 -->
+		<div class="comment-form">
+			<form action="${pageContext.request.contextPath}/" method="post">
+				<input type="hidden" name="placeNo" value="${cafe.placeNo}" />
+				<textarea class="commentContents" placeholder="댓글을 입력하시오" required></textarea>
+				<button class="comment-upload" type="submit">댓글 등록하기</button>
+			</form>
+		</div>
+
+		<!-- 댓글 목록 -->
+		<div class="comment-list">
+			<c:forEach var="comment" items="${commentList}">
+				<div class="comment-item">
+					<p>
+						<strong>User ${comment.userNo}</strong> <span class="comment-date">${comment.commentCreDate}</span>
+					</p>
+					<p>${comment.commentContents}</p>
+				</div>
+			</c:forEach>
+		</div>
+
+
+	</div>
 	<jsp:include page="/jsp/common/footer.jsp" />
 </body>
 </html>

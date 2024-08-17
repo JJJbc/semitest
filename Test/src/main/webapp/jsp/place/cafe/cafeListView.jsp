@@ -17,9 +17,9 @@
 <script defer src="${pageContext.request.contextPath}/js/movePage.js"></script>
 <style type="text/css">
 .list-box__li {
-/* 	display: flex; */
-	
+/* 	display: flex; */	
 }
+
 </style>
 <script type="text/javascript">
 	
@@ -45,6 +45,26 @@
 			</ul>
 		</div>
 	</div>
+	
+	<!-- 페이징 네비게이션 -->
+    <div class="pagination">
+        <c:if test="${currentPage > 1}">
+            <a class="pagination-letter" href="${pageContext.request.contextPath}/area/place/cafe?page=${currentPage - 1}&areaNo=${param.areaNo}">이전</a>
+        </c:if>
+        <c:forEach var="i" begin="1" end="${totalPages}">
+            <c:choose>
+                <c:when test="${i == currentPage}">
+                    <strong class="pagination-nowpage">${i}</strong>
+                </c:when>
+                <c:otherwise>
+                    <a class="pagination-number" href="${pageContext.request.contextPath}/area/place/cafe?page=${i}&areaNo=${param.areaNo}">${i}</a>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+        <c:if test="${currentPage < totalPages}">
+            <a class="pagination-letter" href="${pageContext.request.contextPath}/area/place/cafe?page=${currentPage + 1}&areaNo=${param.areaNo}">다음</a>
+        </c:if>
+    </div>
 
 	<jsp:include page="/jsp/common/footer.jsp" />
 </body>

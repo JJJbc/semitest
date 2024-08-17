@@ -8,6 +8,7 @@ public class CafeDto {
 	private String plPhone;
 	private String plWebsite;
 	private String plImgPath;
+	private int genReservation;
 	
 	public CafeDto() {
 	}
@@ -27,6 +28,8 @@ public class CafeDto {
 		this.plImgPath = plImgPath;
 
 	}
+	
+	
 
 	public int getPlaceNo() {
 		return placeNo;
