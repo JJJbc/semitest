@@ -36,9 +36,24 @@
 				<!-- Additional required wrapper -->
 				<div class="swiper-wrapper">
 					<!-- 이미지 -->
-					<div class="swiper-slide"><img src="/imgEx/더바움.jpg" /></div>
-					<div class="swiper-slide"><img src="/imgEx/카페더킹.jpg" /></div>
-					<div class="swiper-slide"><img src="/imgEx/카페이루아.jpg" /></div>
+					<div class="swiper-slide">
+						<a href="/Test/area/place/recommendcafe">
+						<img src="${pageContext.request.contextPath}/imgEx/2.jpg" alt="이미지 준비중" class="area--img" />
+						</a>
+					</div>
+					
+					<div class="swiper-slide">
+						<a href="/Test/area/place/recommendpension">
+						<img src="${pageContext.request.contextPath}/imgEx/1.jpg" alt="이미지 준비중" class="area--img" />
+						</a>
+					</div>
+					
+					<div class="swiper-slide">
+						<a href="/Test/area/place/recommendrestaurant">
+						<img src="${pageContext.request.contextPath}/imgEx/더바움.jpg" alt="이미지 준비중" class="area--img" />
+						</a>
+					</div>
+					
 					...
 				</div>
 				<!-- If we need pagination -->

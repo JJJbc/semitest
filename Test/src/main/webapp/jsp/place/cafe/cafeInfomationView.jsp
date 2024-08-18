@@ -37,7 +37,7 @@
 						<li class="placeName">${cafe.placeName}</li>
 						<li class="info">Address : ${cafe.plAddress}</li>
 						<li class="info">Phone : ${cafe.plPhone}</li>
-						<li class="info"><a href="${cafe.plWebsite}?redirectToWebsite=true" target="_blank"
+						<li class="info"><a href="${cafe.plWebsite}" target="_blank"
 							class="place--webSite">Web : ${cafe.plWebsite}</a></li>
 					</ul>
 				</div>

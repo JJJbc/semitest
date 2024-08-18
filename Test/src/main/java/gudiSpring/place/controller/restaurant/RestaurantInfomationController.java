@@ -45,11 +45,10 @@ public class RestaurantInfomationController extends HttpServlet {
 			restaurantDao.setConnection(conn);
 
 			RestaurantDto restaurant = restaurantDao.selectRestaurantInfomation(placeNo);
-
+			
 			req.setAttribute("restaurant", restaurant);
 
-			RequestDispatcher dispatcher = req
-					.getRequestDispatcher("/jsp/place/restaurant/restaurantInfomationView.jsp");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/restaurant/restaurantInfomationView.jsp");
 			dispatcher.forward(req, res);
 		} catch (Exception e) {
 			e.printStackTrace();

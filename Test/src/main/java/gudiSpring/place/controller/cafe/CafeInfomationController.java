@@ -31,40 +31,32 @@ public class CafeInfomationController extends HttpServlet {
 			conn = (Connection) sc.getAttribute("conn");
 
 			String placeNoParam = req.getParameter("placeNo");
-			String redirectToWebsite = req.getParameter("redirectToWebsite");
 			int placeNo = -1;
 
 			if (placeNoParam != null && !placeNoParam.isEmpty()) {
-                try {
-                    placeNo = Integer.parseInt(placeNoParam);
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                }
-            }
+				try {
+					placeNo = Integer.parseInt(placeNoParam);
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				}
+			}
 
-            CafeDao cafeDao = new CafeDao();
-            cafeDao.setConnection(conn);
+			CafeDao cafeDao = new CafeDao();
+			cafeDao.setConnection(conn);
 
-            if (redirectToWebsite != null && redirectToWebsite.equals("true")) {
-                // Increase GEN_RESERVATION
-                cafeDao.incrementReservation(placeNo);
-                
-                // Retrieve updated cafe information
-                CafeDto cafe = cafeDao.selectCafeInfomation(placeNo);
-                req.setAttribute("cafe", cafe);
-                
-                // Forward to JSP
-                RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/cafe/cafeInfomationView.jsp");
-                dispatcher.forward(req, res);
-            } else {
-                // Normal request for cafe info
-                CafeDto cafe = cafeDao.selectCafeInfomation(placeNo);
-                req.setAttribute("cafe", cafe);
-                RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/cafe/cafeInfomationView.jsp");
-                dispatcher.forward(req, res);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+			// 카페 정보를 조회합니다.
+			CafeDto cafe = cafeDao.selectCafeInfomation(placeNo);
+
+				
+
+			req.setAttribute("cafe", cafe);
+
+			// JSP 페이지로 포워딩
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/place/cafe/cafeInfomationView.jsp");
+			dispatcher.forward(req, res);
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

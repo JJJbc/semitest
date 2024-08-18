@@ -22,15 +22,15 @@
 	<!-- 식당 지역  -->
 	<div class="main-container">
 		<div class="main-container__content">
-			<ul>
+			<ul class="area-list-box">
 				<c:forEach var="areaDto" items="${areaList}">
-                    <li>
-                        <form action="/Test/area/place/restaurant" method="get">
-                            <input type="hidden" name="areaNo" value="${areaDto.areaNo}" />
-                            <button type="submit" class="areaBtn">${areaDto.areaName}</button>
-                        </form>
-                    </li>
-                </c:forEach>
+					<li class="area-list-box__li">
+						<a href="/Test/area/place/restaurant?areaNo=${areaDto.areaNo}" class="area--list">
+						<img src="${pageContext.request.contextPath}/imgEx/2.jpg" alt="이미지 준비중" class="area--img" /> 
+						<span class="area--title"> ${areaDto.areaName} 
+						</a>
+					</li>
+				</c:forEach>
 			</ul>
 		</div>
 	</div>
