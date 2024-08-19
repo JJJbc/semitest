@@ -26,7 +26,7 @@
 
 	<!-- restaurant information -->
 	<div class="main-container">
-		<div class="main-container_content">
+		<div class="main-container__content">
 			<div class="place__info">
 				<div class="place__info--img">
 					<img src="/img/place/${restaurant.plImgPath}" alt="이미지 준비중"

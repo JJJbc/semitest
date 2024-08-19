@@ -13,3 +13,6 @@
 	 window.location.href = "http://localhost:8090/Test/area/restaurant";
  }
  
+function moveReservationPageFnc(){
+	window.location.href = "http:${pageContext.request.contextPath}/reservation";
+}

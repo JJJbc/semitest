@@ -26,7 +26,7 @@
 
 	<!-- cafe information -->
 	<div class="main-container">
-		<div class="main-container_content">
+		<div class="main-container__content">
 			<div class="place__info">
 				<div class="place__info--img">
 					<img src="/img/place/${cafe.plImgPath}" alt="이미지 준비중"
@@ -38,9 +38,10 @@
 						<li class="info">Address : ${cafe.plAddress}</li>
 						<li class="info">Phone : ${cafe.plPhone}</li>
 						<li class="info"><a href="${cafe.plWebsite}" target="_blank"
-							class="place--webSite">Web : ${cafe.plWebsite}</a></li>
-					</ul>
+							class="place--webSite">Web : ${cafe.plWebsite}</a></li>							
+					</ul>					
 				</div>
+				<button type="button" class="info__reservation" onclick="moveReservationPageFnc()">예약하기</button>
 			</div>
 		</div>
 	</div>

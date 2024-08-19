@@ -12,35 +12,35 @@ ul, li {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 80px;
+    margin-top: 130px;
 }
 
-.main-container_content {
+.main-container__content {
 	display: flex;    
     max-width: 3000px;
 }
 
 /*  place/infomation css */
 /*  image */
-.main-container_content .place__info {    
+.main-container__content .place__info {    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;    
 }
 
-.main-container_content .place__info .place__info--img img {    
+.main-container__content .place__info .place__info--img img {    
     height: 500px;
     width: 800px; 
 }
 
 /*  text */
-.main-container_content .place__info .place__info--text .place__info--text--box {
+.main-container__content .place__info .place__info--text .place__info--text--box {
     margin: 5px;
     padding: 0;
 }
 
-.main-container_content .place__info .place__info--text .place__info--text--box .info {    
+.main-container__content .place__info .place__info--text .place__info--text--box .info {    
     font-size: 30px;
     height: 60px;
     display: flex;
@@ -48,7 +48,7 @@ ul, li {
     flex-direction: column;
 }
 
-.main-container_content .place__info .place__info--text .place__info--text--box .placeName {    
+.main-container__content .place__info .place__info--text .place__info--text--box .placeName {    
     font-size: 50px;
     height: 70px;
     display: flex;
@@ -56,7 +56,7 @@ ul, li {
     flex-direction: column;
 }
 
-.main-container_content .place__info .place__info--text .place__info--text--box .place--webSite{
+.main-container__content .place__info .place__info--text .place__info--text--box .place--webSite{
 	font-size: 30px;
     height: 30px;
     display: flex;
@@ -64,10 +64,30 @@ ul, li {
     flex-direction: column;
 }
 
-.main-container_content .place__info .place__info--text .place__info--text--box .place--webSite:hover {
+.main-container__content .place__info .place__info--text .place__info--text--box .place--webSite:hover {
 		text-decoration: underline;
 }
 
+/* 예약버튼 */
+.main-container .main-container__content .place__info .info__reservation{
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	font-size: 20px;
+	padding: 16px 32px;	
+	cursor: pointer;
+	background-color: white; 
+ 	color: black;
+	border: 1px solid rgb(255, 128, 128);
+	transition-duration: 0.4s;
+	border-radius: 5px;
+}
+
+.main-container .main-container__content .place__info .info__reservation:hover{
+	background-color: rgb(255, 128, 128);
+	color: white;
+}
 
 /* area/place/list css */
 
@@ -169,3 +189,6 @@ ul, li {
 .comment-form .comment-upload:hover {
 	background-color: #0056b3;
 }
+
+
+
