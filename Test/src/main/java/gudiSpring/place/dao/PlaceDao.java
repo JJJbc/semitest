@@ -17,7 +17,7 @@ public class PlaceDao  {
 		this.connection = connection;
 	}
 	
-	public List<PlaceDto> getRandomPlace(int placeNo){
+	public List<PlaceDto> getRandomPlace(){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<PlaceDto> randomPlaceList = new ArrayList<>();
@@ -32,8 +32,7 @@ public class PlaceDao  {
 			sql += ")";
 			sql += " WHERE ROWNUM <= 5";
 			
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setInt(1, placeNo);
+			pstmt = connection.prepareStatement(sql);			
 			rs = pstmt.executeQuery();
 			
 			PlaceDto placeDto = null;

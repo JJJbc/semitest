@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(value = "/area/place/cafe")
+@WebServlet(value = "/main")
 public class RandomPlaceController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -33,14 +33,12 @@ public class RandomPlaceController extends HttpServlet {
 		try {
 			ServletContext sc = this.getServletContext();
 
-			conn = (Connection) sc.getAttribute("conn");
-
-			int placeNo = 1;
+			conn = (Connection) sc.getAttribute("conn");			
 			
 			PlaceDao placeDao = new PlaceDao();
 			placeDao.setConnection(conn);
 
-			ArrayList<PlaceDto> randomPlaceList = (ArrayList<PlaceDto>) placeDao.getRandomPlace(placeNo);
+			ArrayList<PlaceDto> randomPlaceList = (ArrayList<PlaceDto>) placeDao.getRandomPlace();
 
 			req.setAttribute("randomPlaceList", randomPlaceList);
 
