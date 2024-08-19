@@ -16,3 +16,7 @@
 function moveReservationPageFnc(){
 	window.location.href = "http:${pageContext.request.contextPath}/reservation";
 }
+
+function reservationSubmitFnc(){
+	
+}

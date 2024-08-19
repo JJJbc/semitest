@@ -52,7 +52,7 @@
 				</div>
 				
 				<div class="reservation-maincontainer__content__element__submit">
-					<input type="button" value="예약하기" onclick="reservationSubmit();" />
+					<input type="button" value="예약하기" onclick="reservationSubmitFnc();" />
 				</div>		
 			
 			</form>			

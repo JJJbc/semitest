@@ -15,12 +15,12 @@ ul, li {
     margin-top: 80px;
 }
 
-.main-container .main-container_content {
+.main-container .main-container__content {
 	display: flex;    
     max-width: 3000px;
 }
 
-.main-container .main-container_content .swiper{	
+.main-container .main-container__content .swiper{	
 	width: 700px;
 	height: 600px;	
 }

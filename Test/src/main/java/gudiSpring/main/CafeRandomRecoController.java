@@ -1,4 +1,4 @@
-package gudiSpring.place.controller.cafe;
+package gudiSpring.main;
 
 import java.io.IOException;
 import java.sql.Connection;
