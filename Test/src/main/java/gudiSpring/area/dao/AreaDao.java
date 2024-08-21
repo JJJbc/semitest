@@ -71,5 +71,60 @@ public class AreaDao {
 
 		}
 	}
+	
+	// 예약 시 지역번호 추출
+	public List<AreaDto> reservationArea() throws Exception {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "";
+
+			sql += "SELECT AREA_NO";
+			sql += " FROM AREA";
+
+			pstmt = connection.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			int areaNo = 1;			
+
+			ArrayList<AreaDto> reservationArea = new ArrayList<AreaDto>();
+
+			AreaDto AreaDto = null;
+			while (rs.next()) {
+				areaNo = rs.getInt("AREA_NO");
+				
+
+				AreaDto = new AreaDto(areaNo);
+
+				reservationArea.add(AreaDto);
+			}
+			return reservationArea;
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			throw e;
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+
+		}
+	}
 
 }

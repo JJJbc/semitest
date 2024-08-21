@@ -41,7 +41,8 @@
 							class="place--webSite">Web : ${cafe.plWebsite}</a></li>							
 					</ul>					
 				</div>
-				<button type="button" class="info__reservation" onclick="moveReservationPageFnc()">예약하기</button>
+				<!-- areaNo, placeNo, userNo => parameter -->
+				<a href="${pageContext.request.contextPath}/reservation/general?area=${area.areaNo}&place=${place.placeNo}&user=${user.userNo}" class="info__reservation">예약하기</a>
 			</div>
 		</div>
 	</div>

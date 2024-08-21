@@ -14,6 +14,11 @@ public class AreaDto {
 		super();
 		this.areaNo = areaNo;
 		this.areaName = areaName;
+	}	
+
+	public AreaDto(int areaNo) {
+		super();
+		this.areaNo = areaNo;
 	}
 
 	public int getAreaNo() {

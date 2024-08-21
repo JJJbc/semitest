@@ -15,11 +15,18 @@ public class PlaceDto {
 	public PlaceDto() {
 	}
 
-	public PlaceDto(int placeNo, String category, String plImgPath) {
+	public PlaceDto(int placeNo, String placeName, String category, String plImgPath) {
 		super();
 		this.placeNo = placeNo;
+		this.placeName = placeName;
 		this.category = category;
 		this.plImgPath = plImgPath;
+	}
+	
+
+	public PlaceDto(int placeNo) {
+		super();
+		this.placeNo = placeNo;
 	}
 
 	public int getPlaceNo() {
