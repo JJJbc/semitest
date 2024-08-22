@@ -15,9 +15,10 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/common/common.css"
 	type="text/css" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/event/mainEvent.css">
 <link rel="stylesheet"
-<%-- 	href="${pageContext.request.contextPath}/css/main/main.css" --%>
+	href="${pageContext.request.contextPath}/css/event/mainEvent.css">
+<link rel="stylesheet"
+	<%-- 	href="${pageContext.request.contextPath}/css/main/main.css" --%>
 	type="text/css" />
 <!-- swiper -->
 <link rel="stylesheet"
@@ -42,88 +43,47 @@
 		<div class="main-container__content">
 			<!-- Slider main container -->
 			<div class="swiper">
-				<!-- Additional required wrapper -->
-				<!-- 				<div class="swiper-wrapper"> -->
-				<!-- 					이미지 -->
-				<!-- 					<div class="swiper-slide"> -->
-				<!-- 						<a href="/Test/area/place/recommendcafe"> -->
-				<!-- 						<h1>ㄹㄹ</h1> -->
-				<%-- <%-- 						<img src="${pageContext.request.contextPath}/imgEx/1.jpg" alt="이미지 준비중" class="area--img" /> --%>
-				
-				<!-- 						</a> -->
-				<!-- 					</div> -->
-
-				<!-- 					<div class="swiper-slide"> -->
-				<!-- 						<a href="/Test/area/place/recommendpension"> -->
-				<!-- 						<h1>ㄹㄹ</h1> -->
-				<%-- <%-- 						<img src="${pageContext.request.contextPath}/imgEx/2.jpg" alt="이미지 준비중" class="area--img" /> --%>
-			
-				<!-- 						</a> -->
-				<!-- 					</div> -->
-
-				<!-- 					<div class="swiper-slide"> -->
-				<!-- 						<a href="/Test/area/place/recommendrestaurant"> -->
-				<!-- 						<h1>ㄹㄹ</h1> -->
-				<%-- <%-- 						<img src="${pageContext.request.contextPath}/imgEx/더바움.jpg" alt="이미지 준비중" class="area--img" /> --%>
-			
-				<!-- 						</a> -->
-				<!-- 					</div> -->
-				<!-- 					<div class="swiper-slide"> -->
-				<!-- 						<h1>ㄹㄹ</h1> -->
-				<!-- 					</div> -->
-				<!-- 					<div class="swiper-slide"> -->
-				<!-- 					<h1>ㄹㄹ</h1> -->
-
-				<!-- 					</div> -->
-
-				<!-- 					..... -->
-				<!-- 				</div> -->
-				<!-- 				If we need pagination -->
-				<!-- 				<div class="swiper-pagination"></div> -->
-
-				<!-- 				좌우버튼 -->
-				<!-- 				<div class="swiper-button-prev"></div> -->
-				<!-- 				<div class="swiper-button-next"></div> -->
-
-				<!-- 				스크롤바 -->
-				<!-- 				<div class="swiper-scrollbar"></div> -->
-				<!-- 			</div> -->
-				<div class="swiper">
-					<div class="swiper-wrapper">
+				<div class="swiper-wrapper">
+					<c:forEach var="placeDto" items="${randomPlaceList}">
 						<div class="swiper-slide">
-							<a href="/Test/area/place/recommendcafe">
-							<img src="${pageContext.request.contextPath}/imgEx/1.jpg" alt="이미지 준비중" class="area--img" />	
-							</a>						
+							<c:if test="${placeDto.category eq '펜션'}">
+								<a
+									href="${pageContext.request.contextPath}/place/pension/infomation?placeNo=${placeDto.placeNo}">
+									<img src="/img/place/${placeDto.plImgPath}"
+									alt="${placeDto.placeName}" />
+								</a>
+							</c:if>
+
+							<c:if test="${placeDto.category eq '식당'}">
+								<a
+									href="${pageContext.request.contextPath}/place/restaurant/infomation?placeNo=${placeDto.placeNo}">
+									<img src="/img/place/${placeDto.plImgPath}"
+									alt="${placeDto.placeName}" />
+								</a>
+							</c:if>
+
+							<c:if test="${placeDto.category eq '카페'}">
+								<a
+									href="${pageContext.request.contextPath}/place/cafe/infomation?placeNo=${placeDto.placeNo}">
+									<img src="/img/place/${placeDto.plImgPath}"
+									alt="${placeDto.placeName}" />
+								</a>
+							</c:if>
 						</div>
-						<div class="swiper-slide">
-							<a href="/Test/area/place/recommendpension">
-							<img src="${pageContext.request.contextPath}/imgEx/2.jpg" alt="이미지 준비중" class="area--img" />
-							</a>
-						</div>
-						<div class="swiper-slide">
-							<a href="/Test/area/place/recommendrestaurant">
-							<img src="${pageContext.request.contextPath}/imgEx/더바움.jpg" alt="이미지 준비중" class="area--img" />
-							</a>
-						</div>	
-						<div class="swiper-slide">
-							<img src="${pageContext.request.contextPath}/imgEx/카페더킹.jpg" alt="이미지 준비중" class="area--img" /> 
-						</div>
-						<div class="swiper-slide">
-							<img src="${pageContext.request.contextPath}/imgEx/카페이루아.jpg" alt="이미지 준비중" class="area--img" />
-						</div>
-					</div>
+					</c:forEach>
+				</div>
 
-					<div class="swiper-pagination"></div>
+				<div class="swiper-pagination"></div>
 
-					<div class="swiper-button-prev">
-						<div class="material-icons">arrow_back</div>
-					</div>
-					<div class="swiper-button-next">
-						<div class="material-icons">arrow_forward</div>
-					</div>
+				<div class="swiper-button-prev">
+					<div class="material-icons">arrow_back</div>
+				</div>
+				<div class="swiper-button-next">
+					<div class="material-icons">arrow_forward</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
 	</div>
 	<jsp:include page="/jsp/common/footer.jsp" />

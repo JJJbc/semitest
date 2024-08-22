@@ -42,9 +42,15 @@
 								${pension.plWebsite}</a></li>
 					</ul>
 				</div>
+				<!-- areaNo, placeNo, userNo => parameter -->
+				<a
+					href="${pageContext.request.contextPath}/reservation/general?area=${area.areaNo}&place=${place.placeNo}&user=${user.userNo}"
+					class="info__reservation">예약하러 가기</a>
 			</div>
 		</div>
 	</div>
+
+
 
 	<!-- 댓글 섹션 -->
 	<div class="comment-section">

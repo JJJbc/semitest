@@ -59,10 +59,9 @@ public class ReservationController extends HttpServlet {
 			ArrayList<AreaDto> reservationArea = (ArrayList<AreaDto>) areaDao.reservationArea();
 			req.setAttribute("reservationArea", reservationArea);
 			
-			ArrayList<PlaceDto> reservationPlace = (ArrayList<PlaceDto>) placeDao.reservationPlace();
-			req.setAttribute("reservationPlace", reservationPlace);
-			System.out.println("placeNo : " + placeNo);
-			System.out.println("areaNo : " + areaNo);
+//			ArrayList<PlaceDto> reservationPlace = (ArrayList<PlaceDto>) placeDao.reservationPlace();
+//			req.setAttribute("reservationPlace", reservationPlace);
+			
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/reservation/generalReservation.jsp");
 			rd.forward(req, res);
 		} catch (Exception e) {

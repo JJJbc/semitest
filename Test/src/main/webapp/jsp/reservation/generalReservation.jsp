@@ -12,7 +12,7 @@
 	href="${pageContext.request.contextPath}/css/common/common.css"
 	type="text/css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/place/Place.css"
+	href="${pageContext.request.contextPath}/css/reservation/Reservation.css"
 	type="text/css" />
 <script defer src="${pageContext.request.contextPath}/js/movePage.js"></script>
 <style type="text/css">
@@ -29,12 +29,12 @@
 		<div class="main-container__content">
 			<!--예약할 장소 -->
 			<h1 class="reservation-maincontainer__placename">
-				<c:forEach var="placeDto" items="${cafeList}">${cafeDto.placeName}</c:forEach>
+				<c:forEach var="placeDto" items="${placeList}">${placeDto.placeName}</c:forEach>
 			</h1>
 
 			<!--정보 입력 -->
 			<div class="reservation-maincontainer__content">
-				<form class="" action="./general" method="post" onsubmit="return confirm('정말 예약하시겠습니까?');">
+				<form  action="./generalFinish" method="post" onsubmit="return confirm('정말 예약하시겠습니까?');">
 					<div class="reservation-maincontainer__content__element">
 						<div class="visit-date">
 							<label for="visitDate">방문일</label>
@@ -56,7 +56,7 @@
 					</div>
 
 					<div class="reservation-maincontainer__content__element__submit">
-						<input type="submit" value="예약하기"/>
+						<input type="submit" class="reserv__btn" value="예약하기" onclick="location.href='${pageContext.request.contextPath}/jsp/reservation/reservationFinish.jsp'"/>
 					</div>
 				</form>
 			</div>
